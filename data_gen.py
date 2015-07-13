@@ -1,5 +1,10 @@
 import random
 
+'''
+    This is a Python script used to generte fake data for Account,
+    Transactions, and Statement
+    Author: nlq506
+'''
     
 # Generate random account number    
 def random_account_number():
@@ -47,9 +52,8 @@ def popullate_array(acct_numbers_array, number_acct_fields):
     return acct_numbers_array 
  
 # Write to a Transactions file
-def write_trxn_file(acct_numbers_array, number_trxn_fields):
-    file_name = "data/transactions"
-    output_file = open(file_name,"w")
+def write_trxn_file(acct_numbers_array, number_trxn_fields, trxn_file_name):
+    output_file = open(trxn_file_name,"w")
     
     trxn_start_year = 2015
     trxn_end_year= 2015
@@ -73,9 +77,8 @@ def write_trxn_file(acct_numbers_array, number_trxn_fields):
     output_file.close()
 
 # Write to a Statement file
-def write_stmt_file(acct_numbers_array, number_stmt_fields):
-    file_name = "data/statements"
-    output_file = open(file_name,"w")
+def write_stmt_file(acct_numbers_array, number_stmt_fields, stmt_file_name):
+    output_file = open(stmt_file_name,"w")
     
     stmt_start_year = 2015
     stmt_end_year= 2015
@@ -92,9 +95,8 @@ def write_stmt_file(acct_numbers_array, number_stmt_fields):
     output_file.close
 
 # Write to a Account file
-def write_acct_file (acct_numbers_array, number_acct_fields):
-    file_name = "data/accounts"
-    output_file = open(file_name, 'w')
+def write_acct_file (acct_numbers_array, number_acct_fields, acct_file_name):
+    output_file = open(acct_file_name, 'w')
     for acct_num in acct_numbers_array:
         output_file.write("%s\n" %acct_num)
     
@@ -103,6 +105,11 @@ def write_acct_file (acct_numbers_array, number_acct_fields):
 # Main method
 def main ():
     acct_numbers_array = []
+    
+    trxn_file_name = "data/transactions"
+    stmt_file_name = "data/statements"
+    acct_file_name = "data/accounts"
+
     number_acct_fields = 20
     number_stmt_fields = 60
     number_trxn_fields = 80
@@ -111,13 +118,13 @@ def main ():
     acct_numbers_array = popullate_array(acct_numbers_array, number_acct_fields)
         
     # Write all the account number to a Account file.
-    write_acct_file(acct_numbers_array, number_acct_fields)
+    write_acct_file(acct_numbers_array, number_acct_fields, acct_file_name)
     
     # Write random account numbers choosen from the Array
     # togetehr with statement date to a Statement file.
-    write_stmt_file(acct_numbers_array, number_stmt_fields)
+    write_stmt_file(acct_numbers_array, number_stmt_fields, stmt_file_name)
     
     # Write all the data fields to a Transaction file.
-    write_trxn_file(acct_numbers_array, number_trxn_fields)
+    write_trxn_file(acct_numbers_array, number_trxn_fields, trxn_file_name)
     
 main()
